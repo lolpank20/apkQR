@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F7FC"
+    android:backgroundTint="#FDFBFC"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="132dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avvillaslogo" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="279dp"
+        android:layout_height="242dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/contra3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/imagepeoplemain" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="285dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="350dp"
+        android:fontFamily="@font/onest_light"
+        android:text="Ingresa tu contraseña"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="#FCFAFB"
+        app:layout_constraintBottom_toBottomOf="@+id/botonQR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/imagefootermain2" />
+
+    <EditText
+        android:id="@+id/contra1"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="104dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@+id/contra3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/contra2"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="202dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/contra1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/contra1" />
+
+    <EditText
+        android:id="@+id/contra3"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="125dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/contra2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/contra1" />
+
+    <EditText
+        android:id="@+id/contra4"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/contra3"
+        app:layout_constraintStart_toEndOf="@+id/contra3" />
+
+    <ImageButton
+        android:id="@+id/botonQR"
+        android:layout_width="78dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/boton_circular"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/botonqr" />
+
+    <FrameLayout
+        android:id="@+id/frameBotones"
+        android:layout_width="385dp"
+        android:layout_height="132dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="52dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/botonScanQR"
+            android:layout_width="68dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/boton_circular"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:srcCompat="@drawable/imgleerqr"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/botonCargarQR"
+            android:layout_width="68dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/boton_circular"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:srcCompat="@drawable/imgcargarqr"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/botonPegarQR"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boton_circular"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/img_pegarqr"
+
+            />
+
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
