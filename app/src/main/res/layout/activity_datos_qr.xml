@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:padding="24dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        android:gravity="center">
 
+        <!-- TextView para mostrar los datos del QR -->
         <TextView
             android:id="@+id/txtDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
             android:textSize="18sp"
-            android:paddingBottom="16dp"/>
+            android:textColor="#000000" />
 
+        <!-- TextView para mostrar el estado del pago -->
         <TextView
             android:id="@+id/txtEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
             android:textStyle="bold"
-            android:paddingBottom="16dp"/>
+            android:gravity="center"
+            android:textColor="#FF0000" />
 
+        <!-- Botón para realizar el pago -->
         <Button
             android:id="@+id/btnPagar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pagar"
-            android:enabled="false"/>
+            android:textColor="#FFFFFF"
+            android:background="#007BFF"
+            android:layout_marginTop="16dp"
+            android:enabled="true" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
