@@ -9,7 +9,10 @@ import com.google.gson.Gson
 import com.avvillas.pjba_pagoqr.model.PagoQR
 import java.text.SimpleDateFormat
 import java.util.*
+import android.content.Intent
+import android.util.Log
 import java.time.LocalDateTime
+import kotlin.text.format
 
 
 class clsMostrarDatos : AppCompatActivity() {
@@ -24,6 +27,8 @@ class clsMostrarDatos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datos_qr)
+
+        Log.d("clsMostrarDatos", "onCreate: valorQR recibido: ${intent.getStringExtra("valorQR")}")
 
         txtDatos = findViewById(R.id.txtDatos)
         btnPagar = findViewById(R.id.btnPagar)
@@ -106,7 +111,23 @@ class clsMostrarDatos : AppCompatActivity() {
 
     private fun simularPago() {
         datosQR?.let {
-            Toast.makeText(this, "¡Pago exitoso!\nReferencia: ${it.referencia_pago}\nMonto: $${it.monto}", Toast.LENGTH_LONG).show()
-        }
+            val monto = it.monto?.toString() ?: "0.00"  // Si es nulo, usar "0.00"
+            Log.d("simularPago", "Monto a pasar al Intent: $monto")
+            val intent = Intent(this, ComprobantePagoActivity::class.java)
+            intent.putExtra("estado", "Aprobado")
+            intent.putExtra("fechaHora", SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date()))
+            intent.putExtra("valor", it.monto)
+            intent.putExtra("referencia", it.referencia_pago)
+            intent.putExtra("codigoNura", it.codigo_nura)
+            intent.putExtra("nit", it.nit_compania)
+            intent.putExtra("banco", it.banco)
+            intent.putExtra("medioPago", it.medio_pago)
+            intent.putExtra("autorizacion", it.autorizacion)
+            intent.putExtra("datosUsuario", it.client_id)
+
+            Log.d("simularPago", "Intent extras: ${intent.extras}")
+            startActivity(intent)
+
+        } ?: Log.e("simularPago", "datosQR es null")
     }
 }

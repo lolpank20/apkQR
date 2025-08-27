@@ -12,4 +12,7 @@ data class PagoQR(
     val iva: Double?,
     val base: Double?,
     val tipo_canal: String?,
+    val banco: String?,           // Nuevo campo
+    val medio_pago: String?,      // Nuevo campo
+    val autorizacion: String?
 )
