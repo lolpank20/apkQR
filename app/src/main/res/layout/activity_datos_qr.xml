@@ -3,50 +3,104 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/transferirvacio">
+
+    <!-- TextView para mostrar los datos del QR -->
+
+    <!-- TextView para mostrar el estado del pago -->
+
+    <!-- Botón para realizar el pago -->
+
+    <TextView
+        android:id="@+id/txtEstado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:gravity="center"
+        android:paddingStart="24dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="24dp"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/layoutDatosQR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp"
-        android:gravity="center">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtEstado"
+        app:layout_constraintBottom_toTopOf="@id/btnPagar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- TextView para mostrar los datos del QR -->
         <TextView
-            android:id="@+id/txtDatos"
+            android:id="@+id/txtClientId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:textSize="18sp"
-            android:textColor="#000000" />
+            android:text="Client ID"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="4dp" />
 
-        <!-- TextView para mostrar el estado del pago -->
         <TextView
-            android:id="@+id/txtEstado"
+            android:id="@+id/txtReferenciaPago"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="#FF0000" />
+            android:text="Referencia Pago"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="4dp" />
 
-        <!-- Botón para realizar el pago -->
-        <Button
-            android:id="@+id/btnPagar"
+        <TextView
+            android:id="@+id/txtMonto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pagar"
-            android:textColor="#FFFFFF"
-            android:background="#007BFF"
-            android:layout_marginTop="16dp"
-            android:enabled="true" />
+            android:text="Monto"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="4dp" />
 
-        <ImageView
-            android:id="@+id/imageView5"
+        <TextView
+            android:id="@+id/txtIva"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:text="IVA"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="4dp" />
+
+        <TextView
+            android:id="@+id/txtBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Base"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="4dp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPagar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="192dp"
+        android:background="#007BFF"
+        android:enabled="true"
+        android:text="Pagar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

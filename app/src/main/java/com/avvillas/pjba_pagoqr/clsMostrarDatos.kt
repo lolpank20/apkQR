@@ -1,6 +1,8 @@
 package com.avvillas.pjba_pagoqr
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.widget.Button
@@ -13,13 +15,17 @@ import android.content.Intent
 import android.util.Log
 import java.time.LocalDateTime
 import kotlin.text.format
-
+import com.google.gson.JsonObject
 
 class clsMostrarDatos : AppCompatActivity() {
 
-    private lateinit var txtDatos: TextView
     private lateinit var btnPagar: Button
     private lateinit var txtEstado: TextView
+    private lateinit var txtClientId: TextView
+    private lateinit var txtReferenciaPago: TextView
+    private lateinit var txtMonto: TextView
+    private lateinit var txtIva: TextView
+    private lateinit var txtBase: TextView
 
     private var datosQR: PagoQR? = null
     private var qrVigente: Boolean = false
@@ -30,13 +36,23 @@ class clsMostrarDatos : AppCompatActivity() {
 
         Log.d("clsMostrarDatos", "onCreate: valorQR recibido: ${intent.getStringExtra("valorQR")}")
 
-        txtDatos = findViewById(R.id.txtDatos)
         btnPagar = findViewById(R.id.btnPagar)
         txtEstado = findViewById(R.id.txtEstado)
+        txtClientId = findViewById(R.id.txtClientId)
+        txtReferenciaPago = findViewById(R.id.txtReferenciaPago)
+        txtMonto = findViewById(R.id.txtMonto)
+        txtIva = findViewById(R.id.txtIva)
+        txtBase = findViewById(R.id.txtBase)
 
         val valorQR = intent.getStringExtra("valorQR")
         if (valorQR != null) {
             procesarQR(valorQR)
+            // Iniciar temporizador de 1 minuto para QR válido
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, VencimientoQRActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 60_000) // 60,000 ms = 1 minuto
         } else {
             mostrarError("No se recibió ningún valor QR")
         }
@@ -53,10 +69,21 @@ class clsMostrarDatos : AppCompatActivity() {
             }
             datosQR = pagoQR
             mostrarDatos(pagoQR)
+
+
+            // Temporizador local de 30 segundos desde el escaneo
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, VencimientoQRActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 30_000)
+
         } catch (e: Exception) {
             mostrarError("El contenido del QR no es válido.")
         }
     }
+
+
 
     private fun validarEstructura(p: PagoQR): Boolean {
         return !p.client_id.isNullOrEmpty() &&
@@ -68,43 +95,33 @@ class clsMostrarDatos : AppCompatActivity() {
     }
 
     private fun mostrarDatos(p: PagoQR) {
-        txtDatos.text = """
-        Comercio: ${p.client_id} (NIT: ${p.nit_compania})
-        Referencia: ${p.referencia_pago}
-        Monto: $${p.monto}
-        IVA: $${p.iva}
-        Base: $${p.base}
-    """.trimIndent()
+        txtClientId.text = "Comercio: ${p.client_id} (NIT: ${p.nit_compania})"
+        txtReferenciaPago.text = "Referencia: ${p.referencia_pago}"
+        txtMonto.text = "Monto: $${p.monto}"
+        txtIva.text = "IVA: $${p.iva}"
+        txtBase.text = "Base: $${p.base}"
         txtEstado.text = "Estado: Vigente"
         btnPagar.isEnabled = true
     }
 
-    // Usar SimpleDateFormat para compatibilidad con API 24+
-    private fun validarVigencia(fecha: String?): Boolean {
-        return try {
-            val formato = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
-            val fechaExp = formato.parse(fecha)
-            val ahora = Date()
-            fechaExp != null && ahora.before(fechaExp)
-        } catch (e: Exception) {
-            false
-        }
-    }
+
 
     private fun mostrarDatos(p: PagoQR, vigente: Boolean) {
-        txtDatos.text = """
-            Comercio: ${p.client_id} (NIT: ${p.nit_compania})
-            Referencia: ${p.referencia_pago}
-            Monto: $${p.monto}
-            IVA: $${p.iva}
-            Base: $${p.base}
-        """.trimIndent()
+        txtClientId.text = "Comercio: ${p.client_id} (NIT: ${p.nit_compania})"
+        txtReferenciaPago.text = "Referencia: ${p.referencia_pago}"
+        txtMonto.text = "Monto: $${p.monto}"
+        txtIva.text = "IVA: $${p.iva}"
+        txtBase.text = "Base: $${p.base}"
         txtEstado.text = if (vigente) "Estado: Vigente" else "Estado: Expirado"
         btnPagar.isEnabled = vigente
     }
 
     private fun mostrarError(msg: String) {
-        txtDatos.text = ""
+        txtClientId.text = ""
+        txtReferenciaPago.text = ""
+        txtMonto.text = ""
+        txtIva.text = ""
+        txtBase.text = ""
         txtEstado.text = msg
         btnPagar.isEnabled = false
     }
@@ -116,7 +133,7 @@ class clsMostrarDatos : AppCompatActivity() {
             val intent = Intent(this, ComprobantePagoActivity::class.java)
             intent.putExtra("estado", "Aprobado")
             intent.putExtra("fechaHora", SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date()))
-            intent.putExtra("valor", it.monto)
+            intent.putExtra("valor", monto)
             intent.putExtra("referencia", it.referencia_pago)
             intent.putExtra("codigoNura", it.codigo_nura)
             intent.putExtra("nit", it.nit_compania)

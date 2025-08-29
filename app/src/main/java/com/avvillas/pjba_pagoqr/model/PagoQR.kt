@@ -14,5 +14,6 @@ data class PagoQR(
     val tipo_canal: String?,
     val banco: String?,           // Nuevo campo
     val medio_pago: String?,      // Nuevo campo
-    val autorizacion: String?
+    val autorizacion: String?,
+    val fecha_expiracion: String?
 )

@@ -39,9 +39,13 @@
             </intent-filter>
         </activity>
 
-        <!-- Agrega esta actividad para permitir que se abra ComprobantePagoActivity -->
-        <activity android:name=".ComprobantePagoActivity" android:exported="true">
-        </activity>
+
+    <!-- Pantalla para QR vencido -->
+    <activity android:name=".VencimientoQRActivity" android:exported="true" />
+
+    <!-- Agrega esta actividad para permitir que se abra ComprobantePagoActivity -->
+    <activity android:name=".ComprobantePagoActivity" android:exported="true">
+    </activity>
 
         <meta-data
             android:name="preloaded_fonts"
