@@ -46,7 +46,7 @@ Esta aplicación Android es una Prueba de Concepto (PoC) para el flujo de pagos 
 ## Requerimientos para el Backend
 
 - El QR debe contener un JSON con los campos obligatorios mencionados.
-- El campo `fecha_expedicion` es solo informativo y no se usa para lógica de vigencia.
+- El campo `fecha_expedicion` es solo informativo y usa para lógica de vigencia.
 - No es necesario enviar campos de expiración ni tiempo de validez.
 
 ---
