@@ -40,15 +40,6 @@ Esta aplicación Android es una Prueba de Concepto (PoC) para el flujo de pagos 
 5. **Simulación de Pago**
    - Si el usuario presiona "Pagar" antes de que venza el QR, se simula el pago y se muestra un comprobante con los datos relevantes.
 
----
-
-## Consideraciones Técnicas
-
-- **No se valida la hora del dispositivo ni se compara con ninguna fecha del QR.**
-- **No se usa el campo `fecha_expiracion` ni `tiempo_validez_segundos`.**
-- El backend solo debe enviar el campo `fecha_expedicion` (valor fijo) y los datos del pago.
-- El temporizador de 30 segundos es local y comienza al escanear el QR.
-- Si el QR no contiene los campos obligatorios, se muestra un mensaje de error y no se permite el pago.
 
 ---
 
