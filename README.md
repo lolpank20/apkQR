@@ -53,7 +53,7 @@ Esta aplicación Android es una Prueba de Concepto (PoC) para el flujo de pagos 
 
 ## Resumen del Proceso
 
-1. Escanear QR → Mostrar datos → Iniciar temporizador de 30s
+1. Escanear QR → Mostrar datos → Iniciar temporizador de 30s `fecha_expedicion`
 2. Si el usuario paga antes de 30s → Mostrar comprobante
 3. Si pasan 30s sin pagar → Mostrar pantalla de QR vencido
 
@@ -63,10 +63,5 @@ Esta aplicación Android es una Prueba de Concepto (PoC) para el flujo de pagos 
 
 - El flujo es completamente local y no depende de la hora del dispositivo ni de la generación del QR.
 - Para reiniciar el proceso, basta con volver a escanear un QR válido.
-- El temporizador se reinicia con cada nuevo escaneo.
+- El temporizador se reinicia con cada nuevo escaneo `fecha_expedicion`
 
----
-
-## Contacto
-
-Para dudas o soporte técnico, contactar al equipo de desarrollo
